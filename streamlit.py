@@ -41,7 +41,7 @@ def main():
                         with expander:
                             recommended_indices = df.iloc[i + j]['recommended_articles']
                             for idx in recommended_indices:
-                                st.write(df.iloc[idx]['title_short'])
+                                st.write(df.iloc[idx]['title_long'])
 
 
 if __name__ == "__main__":
