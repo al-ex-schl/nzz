@@ -32,8 +32,9 @@ def main():
                 with cols[j]:
                     image = df.iloc[i + j]['image_url']
                     title = df.iloc[i + j]['title_long']
+                    url = df.iloc[i + j]['url']
                     st.image(image, width=image_width, use_column_width=False)
-                    st.markdown(f"<p style='text-align:center'>{title}</p>", unsafe_allow_html=True)
+                    st.markdown(f"<p style='text-align:center'><a href='{url}' target='_blank'>{title}</a></p>", unsafe_allow_html=True)
 
                     if 'recommended_articles' in df.columns and isinstance(df.iloc[i + j]['recommended_articles'],
                                                                            list):
@@ -41,7 +42,9 @@ def main():
                         with expander:
                             recommended_indices = df.iloc[i + j]['recommended_articles']
                             for idx in recommended_indices:
-                                st.write(df.iloc[idx]['title_long'])
+                                recommended_title = df.iloc[idx]['title_long']
+                                recommended_url = df.iloc[idx]['url']
+                                st.markdown(f"<p><a href='{recommended_url}' target='_blank'>{recommended_title}</a></p>", unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
